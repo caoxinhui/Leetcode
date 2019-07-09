@@ -622,6 +622,38 @@ var plusOne = function (digits) {
     if (s === 1) digits.unshift(1);
     return digits;
 };
+var plusOne = function (digits) {
+    var arr = digits.reverse()
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] + 1 === 10) {
+            arr[i] = 0
+            if (i === arr.length - 1) {
+                arr[i + 1] = 1
+                break
+            }
+        } else {
+            arr[i] = arr[i] + 1
+            break
+        }
+    }
+    return arr.reverse()
+};
+// 反转数组竟然还快一点，有问题吧？？？
+var plusOne = function (digits) {
+    for (var i = digits.length - 1; i >= 0; i--) {
+      if (digits[i] + 1 === 10) {
+        digits[i] = 0
+        if (i === 0) {
+          digits.unshift(1)
+          break
+        }
+      } else {
+        digits[i] = digits[i] + 1
+        break
+      }
+    }
+    return digits
+  };
 //67. Add Binary
 var addBinary = function (a, b) {
     var result = "";
