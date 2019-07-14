@@ -685,11 +685,53 @@ var setZeroes = function (matrix) {
         }
     }
 }
+//74. 搜索二维矩阵
+var searchMatrix = function (matrix, target) {
+    if (matrix.length === 0) return false
+    for (var i = 0; i < matrix.length; i++) {
+      if (matrix[i].length === 0) return false
+      if (target === Number(matrix[i][0]) || (Number(matrix[i + 1]) && target === Number(matrix[i + 1][0]))) return true
+      if (target > Number(matrix[i][0])) {
+        if (matrix[i + 1]) {
+          if (Number(matrix[i + 1][0]) > Number(target)) {
+            for (var j = 1; j < matrix[0].length; j++) {
+              if (Number(matrix[i][j]) === target) return true
+            }
+          }
+        } else {
+          for (var j = 1; j < matrix[0].length; j++) {
+            if (Number(matrix[i][j]) === target) return true
+          }
+        }
+      } 
+    }
+    return false
+  };
 //75. Sort Colors
 var sortColors = function (nums) {
     nums.sort(function (a, b) { return a - b });
 
 };
+
+//78. 子集
+var subsets = function(nums) {
+    if (nums.length === 0) {
+        return [[]];
+    }
+    let [num, ...restNums] = nums;
+    let restSubSets = subsets(restNums);
+    return restSubSets.map(set => [...set, num]).concat(restSubSets);
+};
+var subsets = function(nums) {
+    let ws = [[]];
+    for(let i=0; i < nums.length; ++i) {
+        for(let j=0, len = ws.length; j < len; ++j) {
+            ws.push(ws[j].concat([nums[i]]));
+        }
+    }
+    return ws;
+};
+
 //82. Remove Duplicates from Sorted List II
 var deleteDuplicates = function (head) {
     var dummy = new ListNode(0);
