@@ -668,6 +668,20 @@ var addBinary = function (a, b) {
     }
     return result;
 };
+var addBinary = function (a, b) {
+    var a1 = a.split('').reverse()
+    var b1 = b.split('').reverse()
+    var prefix = 0
+    if (a1.length < b1.length) [a1, b1] = [b1, a1]
+    var res = a1.map((n, i) => {
+      var num = (b1[i] ? parseInt(b1[i]) : 0) + prefix + parseInt(n)
+      prefix = num >= 2 ? 1 : 0
+      return num % 2
+    })
+    if(prefix === 1) res.push(1)
+    return res.reverse().join('')
+
+  };
 //73. Set Matrix Zeroes
 var setZeroes = function (matrix) {
     var r = matrix.length;
