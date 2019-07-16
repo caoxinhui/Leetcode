@@ -411,6 +411,31 @@ var rotate = function (matrix) {
         }
     }
 };
+// 50. Pow(x,n)
+var myPow = function (x, n) {
+    var x = n > 0 ? x : 1 / x
+    n = Math.abs(n)
+    var map = new Map()
+    var pow = (x, n) => {
+        var result
+        if (map.has(n)) {
+            return map.get(n)
+        }
+        if (n === 0) return 1
+        if (n === 1) return x
+        var m = Math.floor(n / 2)
+        result = pow(x, m) * pow(x, n - m)
+        map.set(n, result)
+        return result
+    }
+    return pow(x, n)
+};
+var myPow = function (x, n) {
+    if (n < 0) return 1 / myPow(x, -n)
+    if (n === 0) return 1
+    if (n % 2 === 0) return myPow(x * x, n / 2)
+    return myPow(x * x, Math.floor(n / 2)) * x
+};
 //53. Maximum Subarray
 var maxSubArray = function (nums) {
     let max_so_far = -Infinity;
@@ -641,19 +666,19 @@ var plusOne = function (digits) {
 // 反转数组竟然还快一点，有问题吧？？？
 var plusOne = function (digits) {
     for (var i = digits.length - 1; i >= 0; i--) {
-      if (digits[i] + 1 === 10) {
-        digits[i] = 0
-        if (i === 0) {
-          digits.unshift(1)
-          break
+        if (digits[i] + 1 === 10) {
+            digits[i] = 0
+            if (i === 0) {
+                digits.unshift(1)
+                break
+            }
+        } else {
+            digits[i] = digits[i] + 1
+            break
         }
-      } else {
-        digits[i] = digits[i] + 1
-        break
-      }
     }
     return digits
-  };
+};
 //67. Add Binary
 var addBinary = function (a, b) {
     var result = "";
@@ -674,14 +699,14 @@ var addBinary = function (a, b) {
     var prefix = 0
     if (a1.length < b1.length) [a1, b1] = [b1, a1]
     var res = a1.map((n, i) => {
-      var num = (b1[i] ? parseInt(b1[i]) : 0) + prefix + parseInt(n)
-      prefix = num >= 2 ? 1 : 0
-      return num % 2
+        var num = (b1[i] ? parseInt(b1[i]) : 0) + prefix + parseInt(n)
+        prefix = num >= 2 ? 1 : 0
+        return num % 2
     })
-    if(prefix === 1) res.push(1)
+    if (prefix === 1) res.push(1)
     return res.reverse().join('')
 
-  };
+};
 //73. Set Matrix Zeroes
 var setZeroes = function (matrix) {
     var r = matrix.length;
@@ -703,24 +728,24 @@ var setZeroes = function (matrix) {
 var searchMatrix = function (matrix, target) {
     if (matrix.length === 0) return false
     for (var i = 0; i < matrix.length; i++) {
-      if (matrix[i].length === 0) return false
-      if (target === Number(matrix[i][0]) || (Number(matrix[i + 1]) && target === Number(matrix[i + 1][0]))) return true
-      if (target > Number(matrix[i][0])) {
-        if (matrix[i + 1]) {
-          if (Number(matrix[i + 1][0]) > Number(target)) {
-            for (var j = 1; j < matrix[0].length; j++) {
-              if (Number(matrix[i][j]) === target) return true
+        if (matrix[i].length === 0) return false
+        if (target === Number(matrix[i][0]) || (Number(matrix[i + 1]) && target === Number(matrix[i + 1][0]))) return true
+        if (target > Number(matrix[i][0])) {
+            if (matrix[i + 1]) {
+                if (Number(matrix[i + 1][0]) > Number(target)) {
+                    for (var j = 1; j < matrix[0].length; j++) {
+                        if (Number(matrix[i][j]) === target) return true
+                    }
+                }
+            } else {
+                for (var j = 1; j < matrix[0].length; j++) {
+                    if (Number(matrix[i][j]) === target) return true
+                }
             }
-          }
-        } else {
-          for (var j = 1; j < matrix[0].length; j++) {
-            if (Number(matrix[i][j]) === target) return true
-          }
         }
-      } 
     }
     return false
-  };
+};
 //75. Sort Colors
 var sortColors = function (nums) {
     nums.sort(function (a, b) { return a - b });
@@ -728,7 +753,7 @@ var sortColors = function (nums) {
 };
 
 //78. 子集
-var subsets = function(nums) {
+var subsets = function (nums) {
     if (nums.length === 0) {
         return [[]];
     }
@@ -736,10 +761,10 @@ var subsets = function(nums) {
     let restSubSets = subsets(restNums);
     return restSubSets.map(set => [...set, num]).concat(restSubSets);
 };
-var subsets = function(nums) {
+var subsets = function (nums) {
     let ws = [[]];
-    for(let i=0; i < nums.length; ++i) {
-        for(let j=0, len = ws.length; j < len; ++j) {
+    for (let i = 0; i < nums.length; ++i) {
+        for (let j = 0, len = ws.length; j < len; ++j) {
             ws.push(ws[j].concat([nums[i]]));
         }
     }

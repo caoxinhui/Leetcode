@@ -5,23 +5,22 @@
 
 <body>
   <script>
-    var addBinary = function (a, b) {
-      var result = []
-      var a1 = a.reverse().split('')
-      var b1 = b.reverse().split('')
-      var prefix = 0
-      if (a1.length < b1.length) [a1, b1] = [b1, a1]
-      var res = a1.map((n, i) => {
-        var num = (b1[i] ? parseInt(b1[i]) : 0) + prefix + parseInt(n)
-        prefix = num >= 2 ? 1 : 0
-        return num % 2
-      })
-      if(prefix === 1) res.push(1)
-      return res.reverse().join('')
+    var myPow = function (x, n) {
+      var res = 1
+      if (n === 0) return x
+      if (n > 0) {
 
+        for (var i = 0; i < n; i++) {
+          res = res * x
+        }
+      } else {
+        for (var i = 0; i < Math.abs(n); i++) {
+          res = res * (1 / x)
+        }
+      }
+      return res
     };
-    console.log(addBinary)
-
+    console.log(myPow(2, 10))
   </script>
 </body>
 
