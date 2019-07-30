@@ -1,13 +1,18 @@
-var maxSubArray = function (nums) {
-  let ans = nums[0]
-  let sum = 0
-  for (const num of nums) {
-    if (sum > 0) {
-      sum += num
-    } else {
-      sum = num
-    }
-    ans = Math.max(ans, sum)
+var uniquePaths = function (m, n) {
+  let dp = Array(m)
+  for (let i = 0; i < m; i++) {
+    dp[i] = Array(n)
   }
-  return ans
+  for (let i = 0; i < m; i++) {
+    dp[i][0] = 1
+  }
+  for (let i = 0; i < n; i++) {
+    dp[0][i] = 1
+  }
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
+      dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+    }
+  }
+  return dp[m - 1][n - 1]
 };
