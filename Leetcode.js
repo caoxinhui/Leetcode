@@ -480,23 +480,18 @@ var maxSubArray = function (nums) {
     return max_so_far;
 };
 var maxSubArray = function (nums) {
-    var maxSum = nums[0];
-    var currentSum = nums[0];
-    for (var i = 1; i < nums.length; i++) {
-        currentSum += nums[i];
-        maxSum = Math.max(...[maxSum, currentSum, nums[i]]);
-        if (maxSum === nums[i]) {
-            currentSum = nums[i];
-        } else {
-            if (currentSum > nums[i]) {
-                nums[i] = currentSum;
-            } else {
-                currentSum = nums[i];
-            }
-        }
+    let ans = nums[0]
+    let sum = 0
+    for (const num of nums) {
+      if (sum > 0) {
+        sum += num
+      } else {
+        sum = num
+      }
+      ans = Math.max(ans, sum)
     }
-    return maxSum;
-};
+    return ans
+  };
 //56. Merge Intervals
 var merge = function (intervals) {
     intervals.sort((a, b) => a.start - b.start);
