@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
 
-<head></head>
+<head>
+  <style>
+    .topRow{
+      width: 1920px;
+      height: 30px;
+      background-color: blue;
+    }
+    .gap{
+      width: 30px;
+      height: 20px;
+    }
+  </style>
+</head>
 
 <body>
-  <script>
-    var myPow = function (x, n) {
-      var res = 1
-      if (n === 0) return x
-      if (n > 0) {
+  <div class="gap"></div>
+  <div class="topRow">
 
-        for (var i = 0; i < n; i++) {
-          res = res * x
-        }
-      } else {
-        for (var i = 0; i < Math.abs(n); i++) {
-          res = res * (1 / x)
-        }
-      }
-      return res
-    };
-    console.log(myPow(2, 10))
-  </script>
+  </div>
+
 </body>
 
 </html>

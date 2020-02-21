@@ -1,13 +1,8 @@
-var maxSubArray = function (nums) {
-  let ans = nums[0]
-  let sum = 0
-  for (const num of nums) {
-    if (sum > 0) {
-      sum += num
-    } else {
-      sum = num
+var addTwoNumbers = function(l1, l2) {
+    if(!l1) return l2
+    if(!l2) return l1
+    let result = l1.val + l2.val
+    while(l1.next) {
+      result
     }
-    ans = Math.max(ans, sum)
-  }
-  return ans
 };
