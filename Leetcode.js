@@ -1,33 +1,33 @@
 //5. 最长回文串 （动态规划）
 var longestPalindrome = function (s) {
-  let dp = []
-  for (let i = 0; i < s.length; i++) {
-    dp[i] = []
-  }
-  let max = -1
-  let str = ''
-  for (let k = 0; k < s.length; k++) {
-    for (let i = 0; i + k < s.length; i++) {
-      let j = i + k
-      if (k === 0) {
-        dp[i][j] = true
-      } else if (k <= 2) {
-        if (s[i] === s[j]) {
-          dp[i][j] === true
-        } else {
-          dp[i][j] === false
-        }
-      } else {
-        dp[i][j] = (dp[i + 1][j - 1] && s[i] === s[j]) ? true : false
-      }
-      if (j - i > max && dp[i][j]) {
-        max = j - i
-        str = s.substring(i, j + 1)
-      }
+    let dp = []
+    for (let i = 0; i < s.length; i++) {
+        dp[i] = []
     }
-  }
-  return str
-};  
+    let max = -1
+    let str = ''
+    for (let k = 0; k < s.length; k++) {
+        for (let i = 0; i + k < s.length; i++) {
+            let j = i + k
+            if (k === 0) {
+                dp[i][j] = true
+            } else if (k <= 2) {
+                if (s[i] === s[j]) {
+                    dp[i][j] === true
+                } else {
+                    dp[i][j] === false
+                }
+            } else {
+                dp[i][j] = (dp[i + 1][j - 1] && s[i] === s[j]) ? true : false
+            }
+            if (j - i > max && dp[i][j]) {
+                max = j - i
+                str = s.substring(i, j + 1)
+            }
+        }
+    }
+    return str
+};
 var fourSumCount = function (A, B, C, D) {
     var mp = {};
 
@@ -483,15 +483,15 @@ var maxSubArray = function (nums) {
     let ans = nums[0]
     let sum = 0
     for (const num of nums) {
-      if (sum > 0) {
-        sum += num
-      } else {
-        sum = num
-      }
-      ans = Math.max(ans, sum)
+        if (sum > 0) {
+            sum += num
+        } else {
+            sum = num
+        }
+        ans = Math.max(ans, sum)
     }
     return ans
-  };
+};
 //56. Merge Intervals
 var merge = function (intervals) {
     intervals.sort((a, b) => a.start - b.start);
@@ -596,6 +596,24 @@ const createTwoDimenssionsArray = function createTwoDimenssionsArray(row, col, d
     return Array.apply(null, Array(row)).map(() => {
         return Array.apply(null, Array(col)).map(() => default_val);
     });
+};
+var uniquePaths = function (m, n) {
+    let dp = Array(m)
+    for (let i = 0; i < m; i++) {
+        dp[i] = Array(n)
+    }
+    for (let i = 0; i < m; i++) {
+        dp[i][0] = 1
+    }
+    for (let i = 0; i < n; i++) {
+        dp[0][i] = 1
+    }
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+        }
+    }
+    return dp[m - 1][n - 1]
 };
 // with 2D array
 var uniquePaths = function (m, n) {
